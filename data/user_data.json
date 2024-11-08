@@ -1,0 +1,28 @@
+{
+    "owner": {
+        "email": "andrey.nguyenowner36@multilogin.com",
+        "password": "63a893295ab32eade50ed72544ecaec0",
+        "workspace_id": "89bf9cc9-f8a2-49e1-a5b6-c826cc8cc713",
+        "folder_id": "89bf9cc9-f8a2-49e1-a5b6-c826cc8cc713",
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJicGRzLmJ1Y2tldCI6Im1seC1icGRzLWRldi0xIiwibWFjaGluZUlEIjoiIiwicHJvZHVjdElEIjoiZGV2Iiwid29ya3NwYWNlUm9sZSI6Im93bmVyIiwidmVyaWZpZWQiOnRydWUsInBsYW5OYW1lIjoiVGVhbSBQcm9tbyIsInNoYXJkSUQiOiJjYmUxMzgwMC1iYmFmLTRjOGYtODBiMy0xOTdmODk2Mzk0ZjIiLCJ1c2VySUQiOiJjNWM1MzU2Ny1jNGY0LTQwMWQtODQzZC03ODg0N2NhOGQyN2EiLCJlbWFpbCI6ImFuZHJleS5uZ3V5ZW5vd25lcjM2QG11bHRpbG9naW4uY29tIiwiaXNBdXRvbWF0aW9uIjpmYWxzZSwid29ya3NwYWNlSUQiOiI4OWJmOWNjOS1mOGEyLTQ5ZTEtYTViNi1jODI2Y2M4Y2M3MTMiLCJqdGkiOiJiYTkxYmY5My1hN2ZhLTRhYjAtYjUwMy00ZmZlODQ2MzNiNDgiLCJzdWIiOiJNTFgiLCJpc3MiOiJjNWM1MzU2Ny1jNGY0LTQwMWQtODQzZC03ODg0N2NhOGQyN2EiLCJpYXQiOjE3MzAwODgzODIsImV4cCI6MTczMDA5MDE4Mn0.x_DAGwOOGxWzL3_dDex_ogj0sh7rUF908SV_LS2Q9BwIwfKdKbBTbXI9cMsSCn3w6YJItn23WGvEdTdFgeME2w",
+        "refresh_token": "4b94f72dad1a82f9"
+    },
+    "manager": {
+        "email": "andrey.nguyenmanager26@multilogin.com",
+        "password": "63a893295ab32eade50ed72544ecaec0",
+        "workspace_id": "598e7825-45d7-480e-9b2a-7df9338f2efd",
+        "folder_id": "4f6b6eef-1499-466c-b6b7-92c7b0146346"
+    },
+    "launcher": {
+        "email": "andrey.nguyenlauncher26@multilogin.com",
+        "password": "63a893295ab32eade50ed72544ecaec0",
+        "workspace_id": "598e7825-45d7-480e-9b2a-7df9338f2efd",
+        "folder_id": "4f6b6eef-1499-466c-b6b7-92c7b0146346"
+    },
+    "user": {
+        "email": "andrey.nguyenuser26@multilogin.com",
+        "password": "63a893295ab32eade50ed72544ecaec0",
+        "workspace_id": "598e7825-45d7-480e-9b2a-7df9338f2efd",
+        "folder_id": "4f6b6eef-1499-466c-b6b7-92c7b0146346"
+    }
+}
