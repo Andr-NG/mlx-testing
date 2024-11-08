@@ -281,7 +281,7 @@ class TestE2ESignUp:
             logger.info(f"Sign up response: {data}")
             logger.info("Doing validations and assertions ...")
             sign_up_response = mlx_models.MLXResponse(**data)
-            assert sign_up_response.status.http_code == 201, "Failed at sign up step"
+            assert sign_up_response.status.http_code == 201, f"Failed at sign up step {data}"
             assert sign_up_response.status.message == "Successful signup"
         except (ValidationError, AssertionError) as e:
             logger.error("Validation or Assertion error occurred: %s", e)
@@ -298,7 +298,7 @@ class TestE2ESignUp:
         logger.info(f"Email token response: {get_email_token}")
         try:
             logger.info("Doing assertions")
-            assert get_email_token.data.token, "No token returned"
+            assert get_email_token.data.token, f"No token returned {get_email_token}"
         except (AssertionError, ValidationError) as e:
             logger.error("Validation or Assertion error occurred: %s", e)
             raise
@@ -317,8 +317,8 @@ class TestE2ESignUp:
 
         try:
             logger.info("Doing assertions")
-            assert token, "No token returned"
-            assert refresh_token, "No refresh token returned"
+            assert token, f"No token returned {sign_in_response}"
+            assert refresh_token, f"No refresh token returned{sign_in_response}"
         except (AssertionError, ValidationError) as e:
             logger.error("Validation or Assertion error occurred: %s", e)
             raise
@@ -336,7 +336,7 @@ class TestE2ESignUp:
             logger.info("Doing assertions")
             assert (
                 verify_response.status.http_code == 200
-            ), "Failed at email verification step"
+            ), f"Failed at email verification step {data}"
             assert verify_response.status.message == "Email successfully verified"
         except (ValidationError, AssertionError) as e:
             logger.error("Validation or Assertion error occurred: %s", e)
@@ -353,7 +353,7 @@ class TestE2ESignUp:
 
         try:
             logger.info("Doing assertions")
-            assert response.status.http_code == 200, "Failed at setting restricions"
+            assert response.status.http_code == 200, f"Failed at setting restricions {data}"
         except (ValidationError, AssertionError) as e:
             logger.error("Validation or Assertion error occurred: %s", e)
             raise

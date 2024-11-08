@@ -28,7 +28,7 @@ jobs:
 
             - name: Create YAML configuration file
               run: |
-                cat <<EOF > config.yaml
+                cat <<EOF > launcher.yaml
                 LogLevel: debug
                 LogConsole: true
                 GwEnv: dev
