@@ -1,0 +1,44 @@
+name: Test Regression
+
+on:
+    workflow_dispatch: 
+
+jobs:
+    run-profile-tests:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+
+            - name: Set up Python
+              uses: actions/setup-python@v4
+              with:
+                python-version: '3.12'
+            
+            - name: Install Dependencies
+              run: |
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
+
+            - name: Download Launcher (Linux)
+              run: |
+                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin  
+                chmod +x launcher-linux_amd64.bin  # Make Launcher executable
+
+            - name: Create YAML configuration file
+              run: |
+                  echo "LogLevel: debug" > config.yaml
+                  echo "LogConsole: true" >> config.yaml
+                  echo "GwEnv: dev" >> config.yaml
+
+            - name: Start Launcher
+              run: |
+                ./launcher-linux_amd64.bin &  # Start Launcher in the background
+            
+            - name: Run Regression Test
+              env:
+                DEV: ${{ secrets.DEV }}
+              run: |
+                pytest tests/test_sign_up_flow.py
+
