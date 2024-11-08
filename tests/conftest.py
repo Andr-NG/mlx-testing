@@ -31,7 +31,7 @@ logger.propagate = False
 
 @pytest.fixture(scope="session")
 def generate_owner_email() -> Generator[str, Any, None]:
-    name_owner = 'andrey.nguyen+owner'
+    name_owner = 'andrey.nguyenmain'
     domain = '@multilogin.com'
 
     with open('index.txt', 'r') as f:
@@ -76,11 +76,11 @@ def launcher_api(config: utils.ConfigProvider) -> API.Launcher:
     return API.Launcher(url=URL)
 
 
-# @pytest.fixture(scope="session")
-# def provide(config: utils.ConfigProvider) -> dict:
-#     path = config.get_file_path(file="USER_DATA")
-#     user_data = utils.DataProvider(file_path=path).data
-#     return UserData(**user_data)
+@pytest.fixture(scope="session")
+def provide(config: utils.ConfigProvider) -> dict:
+    path = config.get_file_path(file="USER_DATA")
+    user_data = utils.DataProvider(file_path=path).data
+    return UserData(**user_data)
 
 
 # @pytest.fixture(scope="session")

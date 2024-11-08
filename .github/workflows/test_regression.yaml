@@ -28,9 +28,11 @@ jobs:
 
             - name: Create YAML configuration file
               run: |
-                  echo "LogLevel: debug" > config.yaml
-                  echo "LogConsole: true" >> config.yaml
-                  echo "GwEnv: dev" >> config.yaml
+                cat <<EOF > config.yaml
+                LogLevel: debug
+                LogConsole: true
+                GwEnv: dev
+                EOF
 
             - name: Start Launcher
               run: |
