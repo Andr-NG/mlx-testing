@@ -39,8 +39,8 @@ jobs:
                 ./launcher-linux_amd64.bin &  # Start Launcher in the background
             
             - name: Run Regression Test
-              run: |
-                pytest tests/test_sign_up_flow.py
               env:
                 DEV: ${{ secrets.DEV }}
+              run: |
+                pytest tests/test_sign_up_flow.py
 
