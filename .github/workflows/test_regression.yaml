@@ -7,6 +7,9 @@ jobs:
     run-profile-tests:
         runs-on: ubuntu-latest
 
+        env:
+          DEV: ${{ secrets.DEV }}
+
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v3
@@ -33,12 +36,6 @@ jobs:
                 LogConsole: true
                 GwEnv: dev
                 EOF
-
-            - name: Set environment variable for testing
-              env:
-                DEV: ${{ secrets.DEV }}
-              run: |
-                  echo "ENV variable set for ${DEV}"  # For logging; optional
 
             - name: Start Launcher
               run: |
