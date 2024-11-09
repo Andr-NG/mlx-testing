@@ -34,13 +34,17 @@ jobs:
                 GwEnv: dev
                 EOF
 
+            - name: Set environment variable for testing
+              env:
+                DEV: ${{ secrets.DEV }}
+              run: |
+                  echo "ENV variable set for ${DEV}"  # For logging; optional
+
             - name: Start Launcher
               run: |
                 ./launcher-linux_amd64.bin &  # Start Launcher in the background
             
             - name: Run Regression Test
-              env:
-                DEV: ${{ secrets.DEV }}
               run: |
                 pytest tests/test_sign_up_flow.py
 
