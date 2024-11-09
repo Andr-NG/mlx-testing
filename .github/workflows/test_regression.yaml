@@ -6,8 +6,8 @@ on:
 jobs:
     run-profile-tests:
         runs-on: ubuntu-latest
-
-        secrets:
+        env:
+          secrets:
           DEV: ${{ secrets.DEV }}
 
         steps:
