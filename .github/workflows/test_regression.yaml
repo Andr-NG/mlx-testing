@@ -40,10 +40,8 @@ jobs:
                 ./launcher-linux_amd64.bin &  # Start Launcher in the background
             
             - name: Set ENV
-              env:
-                DEV: ${{ secrets.DEV }}
               run: |
-                export DEV=${{ secrets.DEV }}
+                export DEV=chRdSACtgaUHM4Q
 
             - name: Run Tests
               run: |
