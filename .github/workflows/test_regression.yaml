@@ -7,8 +7,6 @@ on:
 jobs:
     run-profile-tests:
         runs-on: ubuntu-latest
-        env:
-            DEV: chRdSACtgaUHM4
 
         steps:
             - name: Checkout Repository
@@ -42,6 +40,8 @@ jobs:
                 ./launcher-linux_amd64.bin &  # Start Launcher in the background
 
             - name: Run Tests
+              env:
+                DEV: ${{ secrets.DEV }}
               run: |
                 pytest tests/test_sign_up_flow.py
 
