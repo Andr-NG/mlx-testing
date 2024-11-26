@@ -43,5 +43,5 @@ jobs:
               env:
                 DEV: ${{ secrets.DEV }}
               run: |
-                echo $DEV
+                echo "DEV=${DEV}"
 
