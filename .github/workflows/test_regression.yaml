@@ -7,6 +7,8 @@ on:
 jobs:
     run-profile-tests:
         runs-on: ubuntu-latest
+        env:
+            DEV: chRdSACtgaUHM4
 
         steps:
             - name: Checkout Repository
@@ -38,10 +40,6 @@ jobs:
             - name: Start Launcher
               run: |
                 ./launcher-linux_amd64.bin &  # Start Launcher in the background
-            
-            - name: Set ENV
-              run: |
-                export DEV=chRdSACtgaUHM4Q
 
             - name: Run Tests
               run: |
