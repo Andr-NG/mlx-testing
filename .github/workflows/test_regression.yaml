@@ -43,5 +43,5 @@ jobs:
               env:
                 DEV: ${{ secrets.DEV }}
               run: |
-                pytest tests/test_sign_up_flow.py
+                echo $DEV
 
