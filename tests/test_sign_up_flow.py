@@ -399,17 +399,19 @@ class TestE2ESignUp:
         logger.info(f"Executing {request.node.name}")
         pid = create_profile[0]
         token, _ = sign_in
-        data = launcher_api.start_profile(
-            profile_id=pid, folder_id=get_folder_id, token=token
-        )
-        response = launcher_models.Response(**data)
-        logger.info(f"Launching profile {pid}: {response}")
-
         try:
+            data = launcher_api.start_profile(
+                profile_id=pid, folder_id=get_folder_id, token=token
+            )
+            response = launcher_models.Response(**data)
+            logger.info(f"Launching profile {pid}: {response}")
             logger.info("Doing assertions")
             assert response.status.http_code == 200, "Failed to launch profile"
         except (AssertionError, ValidationError) as e:
             logger.error("Validation or Assertion error occurred: %s", e)
+            raise
+        except Exception as e:
+            logger.error("Unexpected error has occurred: %s", e)
             raise
         finally:
             logger.info(f"Finishing {request.node.name}")
@@ -423,15 +425,17 @@ class TestE2ESignUp:
         pid = create_profile[0]
         token, _ = sign_in
         time.sleep(3)
-        data = launcher_api.stop_profile(profile_id=pid, token=token)
-        logger.info(f"Stoping profile {pid}: {data}")
-        response = launcher_models.Response(**data)
-
         try:
+            data = launcher_api.stop_profile(profile_id=pid, token=token)
+            logger.info(f"Stoping profile {pid}: {data}")
+            response = launcher_models.Response(**data)
             logger.info("Doing assertions")
             assert response.status.http_code == 200, "Failed to stop profile"
         except (AssertionError, ValidationError) as e:
             logger.error("Validation or Assertion error occurred: %s", e)
+            raise
+        except Exception as e:
+            logger.error("Unexpected error has occurred: %s", e)
             raise
         finally:
             logger.info(f"Finishing {request.node.name}")
