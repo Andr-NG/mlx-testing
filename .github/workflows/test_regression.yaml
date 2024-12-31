@@ -1,7 +1,7 @@
 name: Test Regression
 
 on:
-    workflow_dispatch:
+    push
 
 jobs:
     run-profile-tests:
@@ -38,7 +38,7 @@ jobs:
             - name: Start Launcher
               run: |
                 ls -a
-                ./launcher-linux_amd64.bin
+                ./launcher-linux_amd64.bin &  # Start Launcher in the background
 
             - name: Run Tests
               run: pytest tests/test_sign_up_flow.py
