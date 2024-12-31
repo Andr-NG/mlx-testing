@@ -3,11 +3,12 @@ name: Test Regression
 on:
     workflow_dispatch:
 
-
 jobs:
     run-profile-tests:
         # environment: DEV
         runs-on: ubuntu-latest
+        env: 
+          DEV: ${{ vars.DEV }}
         steps:
             - name: abc
               run: echo ${{ vars.DEV }}
