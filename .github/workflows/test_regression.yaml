@@ -37,7 +37,8 @@ jobs:
 
             - name: Start Launcher
               run: |
-                ./launcher-linux_amd64.bin &  # Start Launcher in the background
+                ls -a
+                ./launcher-linux_amd64.bin
 
             - name: Run Tests
               run: pytest tests/test_sign_up_flow.py
