@@ -11,7 +11,7 @@ jobs:
           DEV: ${{ vars.DEV }}
         steps:
             - name: abc
-              run: echo ${{ vars.DEV }}
+              run: echo $DEV
             # - name: Checkout Repository
             #   uses: actions/checkout@v3
 
