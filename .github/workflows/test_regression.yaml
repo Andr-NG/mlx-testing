@@ -41,7 +41,7 @@ jobs:
 
             - name: Run Tests
               env:
-                DEV: ${{ secrets.DEV }}
+                DEV: ${{ env.DEV }}
               run: |
-                echo ${{ secrets }}
+                echo ${{ env }}
 
