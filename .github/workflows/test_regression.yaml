@@ -34,7 +34,10 @@ jobs:
                 LogConsole: true
                 GwEnv: dev
                 EOF
+            - name: Read yaml
+              run:
                 cat launcher.yaml
+
             - name: Start Launcher
               run: |
                 ls -a
