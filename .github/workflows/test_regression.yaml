@@ -6,7 +6,7 @@ on:
 
 jobs:
     run-profile-tests:
-        environment: DEV
+        # environment: DEV
         runs-on: ubuntu-latest
         steps:
             - name: abc
