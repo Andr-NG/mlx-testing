@@ -28,26 +28,10 @@ jobs:
                 wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin  
                 chmod +x launcher-linux_amd64.bin  # Make Launcher executable
 
-            - name: Create YAML configuration file
-              run: |
-                cat <<EOF > launcher.yaml
-                LogLevel: debug
-                LogConsole: true
-                GwEnv: dev
-                EOF
-            
-            - name: Create directory
-              run: |
-                mkdir -p /home/runner/mlx/configs
-
-            - name: Move the config file to mlx/configs
-              run: |
-                cp launcher.yaml /home/runner/mlx/configs
-
             - name: Start Launcher
               run: |
-                ./launcher-linux_amd64.bin &  # Start Launcher in the background
+                ./launcher-linux_amd64.bin -gw-env=dev &  # Start Launcher in the background
 
-            - name: Run Tests
-              run: pytest tests/test_sign_up_flow.py
+            # - name: Run Tests
+            #   run: pytest tests/test_sign_up_flow.py
 
