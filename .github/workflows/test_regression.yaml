@@ -32,6 +32,6 @@ jobs:
               run: |
                 ./launcher-linux_amd64.bin -gw-env=dev &  # Start Launcher in the background
 
-            # - name: Run Tests
-            #   run: pytest tests/test_sign_up_flow.py
+            - name: Run Tests
+              run: pytest tests/test_sign_up_flow.py
 
