@@ -42,7 +42,7 @@ jobs:
 
             - name: Move the config file to mlx/configs
               run: |
-                cp launcher.yaml ~/mlx/configs
+                cp launcher.yaml /home/runner/mlx/configs
 
             - name: Start Launcher
               run: |
