@@ -6,8 +6,9 @@ on:
 jobs:
     run-profile-tests:
         runs-on: ubuntu-latest
+        environment: DEVELOP
         env: 
-          DEV: ${{ vars.DEV }}
+          DEV: ${{ secrets.DEV }}
         steps:
             - name: Checkout Repository
               uses: actions/checkout@v3
@@ -34,14 +35,14 @@ jobs:
                 LogConsole: true
                 GwEnv: dev
                 EOF
-            - name: Read yaml
-              run:
-                cat launcher.yaml
+
+            - name: Move the config file to mlx/configs
+              run: |
+                cp launcher.yaml ~/mlx/configs
 
             - name: Start Launcher
               run: |
-                ls -a
-                # ./launcher-linux_amd64.bin &  # Start Launcher in the background
+                ./launcher-linux_amd64.bin &  # Start Launcher in the background
 
             - name: Run Tests
               run: pytest tests/test_sign_up_flow.py
