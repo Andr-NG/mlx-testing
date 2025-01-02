@@ -35,6 +35,10 @@ jobs:
                 LogConsole: true
                 GwEnv: dev
                 EOF
+            
+            - name: Create directory
+              run: |
+                mkdir -p mlx/configs
 
             - name: Move the config file to mlx/configs
               run: |
