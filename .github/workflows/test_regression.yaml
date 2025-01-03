@@ -25,7 +25,7 @@ jobs:
 
             - name: Download Launcher (Linux)
               run: |
-                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin  
+                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin -P /home/runner/mlx/deps/launcher
                 chmod +x launcher-linux_amd64.bin  # Make Launcher executable
             
             - name: Download Core (Linux)
@@ -37,8 +37,8 @@ jobs:
 
             - name: Start Launcher
               run: |
-                cd ~
-                ./launcher-linux_amd64.bin -gw-env=dev &  # Start Launcher in the background
+                cd /home/runner/mlx/deps/launcher
+                ./launcher-linux_amd64.bin -gw-env=dev  # Start Launcher in the background
 
             - name: Run Tests
               run: pytest tests/test_sign_up_flow.py
