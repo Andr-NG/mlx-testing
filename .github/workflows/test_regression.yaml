@@ -27,9 +27,17 @@ jobs:
               run: |
                 wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin  
                 chmod +x launcher-linux_amd64.bin  # Make Launcher executable
+            
+            - name: Download Core (Linux)
+              run: |
+                mkdir /home/runner/mlx/deps/mimic
+                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/browser-mimic/131.7/browser-mimic_linux-amd64.tar.gz -P /home/runner/mlx/deps/mimic
+                cd /home/runner/mlx/deps/mimic
+                tar xvzf browser-mimic_linux-amd64.tar.gz
 
             - name: Start Launcher
               run: |
+                cd ~
                 ./launcher-linux_amd64.bin -gw-env=dev &  # Start Launcher in the background
 
             - name: Run Tests

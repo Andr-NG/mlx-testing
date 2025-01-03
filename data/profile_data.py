@@ -4,6 +4,7 @@ fake = faker.Faker()
 PROFILE_GENERIC = {
     'browser_type': 'mimic',
     'folder_id': '',
+    'core_version': 131,
     'name': f'{fake.name()}',
     'os_type': 'windows',
     'parameters': {
