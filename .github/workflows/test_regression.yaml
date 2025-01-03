@@ -25,6 +25,7 @@ jobs:
 
             - name: Download Launcher (Linux)
               run: |
+                mkdir -p /home/runner/mlx/deps/launcher
                 wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin -P /home/runner/mlx/deps/launcher
                 chmod +x launcher-linux_amd64.bin  # Make Launcher executable
             
