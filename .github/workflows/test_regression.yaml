@@ -22,23 +22,23 @@ jobs:
               run: |
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
-
-            - name: Download Launcher (Linux)
-              run: |
-                mkdir -p /home/runner/mlx/deps/launcher
-                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin -P /home/runner/mlx/deps/launcher
-                chmod +x /home/runner/mlx/deps/launcher/launcher-linux_amd64.bin  # Make Launcher executable
             
             - name: Download Core (Linux)
               run: |
                 mkdir -p /home/runner/mlx/deps/mimic
-                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/browser-mimic/131.7/browser-mimic_linux-amd64.tar.gz -P /home/runner/mlx/deps/mimic
-                cd /home/runner/mlx/deps/mimic
+                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/browser-mimic/131.7/browser-mimic_linux-amd64.tar.gz -P /home/runner/mlx/deps/mimic_131.7
+                cd /home/runner/mlx/deps/mimic_131.7
                 tar xvzf browser-mimic_linux-amd64.tar.gz
+            
+            - name: Download Launcher (Linux)
+              run: |
+                mkdir -p /home/runner/mlx/deps/launcher
+                cd /home/runner/mlx/deps/launcher
+                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin -P /home/runner/mlx/deps/launcher
+                chmod +x launcher-linux_amd64.bin  # Make Launcher executable
 
             - name: Start Launcher
               run: |
-                cd /home/runner/mlx/deps/launcher
                 ./launcher-linux_amd64.bin -gw-env=dev & # Start Launcher in the background
 
             - name: Run Tests
