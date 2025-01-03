@@ -27,7 +27,7 @@ jobs:
               run: |
                 mkdir -p /home/runner/mlx/deps/launcher
                 wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin -P /home/runner/mlx/deps/launcher
-                chmod +x launcher-linux_amd64.bin  # Make Launcher executable
+                chmod +x /home/runner/mlx/deps/launcher/launcher-linux_amd64.bin  # Make Launcher executable
             
             - name: Download Core (Linux)
               run: |
