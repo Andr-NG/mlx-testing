@@ -30,7 +30,7 @@ jobs:
             
             - name: Download Core (Linux)
               run: |
-                mkdir /home/runner/mlx/deps/mimic
+                mkdir -p /home/runner/mlx/deps/mimic
                 wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/browser-mimic/131.7/browser-mimic_linux-amd64.tar.gz -P /home/runner/mlx/deps/mimic
                 cd /home/runner/mlx/deps/mimic
                 tar xvzf browser-mimic_linux-amd64.tar.gz
