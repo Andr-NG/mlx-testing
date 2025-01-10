@@ -30,7 +30,6 @@ jobs:
                 cd /home/runner/mlx/deps/adapter_tester
                 mv adapter-amd64.bin adapter.bin
                 chmod +x adapter.bin
-                export ADAPTER_TESTER=1
                 cat > VERSION << EOF
                 1.0
                 EOF
@@ -45,6 +44,7 @@ jobs:
             - name: Start Launcher
               run: |
                 cd /home/runner/mlx/deps/launcher
+                export ADAPTER_TESTER=1
                 ./launcher-linux_amd64_CORE-1624.bin -gw-env=dev & # Start Launcher in the background
 
             - name: Run Tests
