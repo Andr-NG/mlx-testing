@@ -23,24 +23,25 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
             
-            - name: Download Core (Linux)
+            - name: Download adapter
               run: |
-                mkdir -p /home/runner/mlx/deps/mimic
-                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/browser-mimic/131.7/browser-mimic_linux-amd64.tar.gz -P /home/runner/mlx/deps/mimic_131.7
-                cd /home/runner/mlx/deps/mimic_131.7
-                tar xvzf browser-mimic_linux-amd64.tar.gz
+                mkdir -p /home/runner/mlx/deps/adapter_tester
+                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/adapter_tester/1.0.0/linux/adapter-amd64.bin -P /home/runner/mlx/deps/adapter_tester
+                cd /home/runner/mlx/deps/adapter_tester
+                mv adapter-amd64.bin adapter.bin
+                chmod +x adapter.bin
             
             - name: Download Launcher (Linux)
               run: |
                 mkdir -p /home/runner/mlx/deps/launcher
                 cd /home/runner/mlx/deps/launcher
-                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/latest-build/launcher-linux_amd64.bin -P /home/runner/mlx/deps/launcher
-                chmod +x launcher-linux_amd64.bin  # Make Launcher executable
+                wget https://ml000x-dev-dists.s3.eu-north-1.amazonaws.com/launcher-mlx/CORE-1624/launcher-linux_amd64_CORE-1624.bin -P /home/runner/mlx/deps/launcher
+                chmod +x launcher-linux_amd64_CORE-1624.bin  # Make Launcher executable
 
             - name: Start Launcher
               run: |
                 cd /home/runner/mlx/deps/launcher
-                ./launcher-linux_amd64.bin -gw-env=dev & # Start Launcher in the background
+                ./launcher-linux_amd64_CORE-1624.bin -gw-env=dev & # Start Launcher in the background
 
             - name: Run Tests
               run: pytest tests/test_sign_up_flow.py
