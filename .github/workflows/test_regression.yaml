@@ -22,18 +22,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
-      - name: Download Previous Index
-        uses: actions/download-artifact@v3
-        with:
-          name: email_index
-          path: ./artifact
-        continue-on-error: true
-
-      - name: Set Default Index if Absent
-        run: |
-          mkdir -p ./artifact  
-          echo "0" > ./artifact/email_index.txt || true
 
       - name: Set up Adapter
         run: |
@@ -61,11 +49,14 @@ jobs:
 
       - name: Run Tests
         env:
-          EMAIL_INDEX_FILE: ./artifact/email_index.txt
-        run: pytest tests/test_sign_up_flow.py
+          EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
+        run: |
+          echo "Current email index is $EMAIL_INDEX"
+          pytest tests/test_sign_up_flow.py
       
-      - name: Upload Updated Index
-        uses: actions/upload-artifact@v3
-        with:
-          name: email_index
-          path: ./artifact/email_index.txt
+      - name: Update Index
+        run: |
+          index=${{ vars.EMAIL_INDEX }} 
+          NEW_INDEX=$((index + 1))
+          echo "Incremented index: $new_index"
+          echo "EMAIL_INDEX=$new_index" >> $GITHUB_ENV
