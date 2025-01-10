@@ -30,7 +30,7 @@ jobs:
                 cd /home/runner/mlx/deps/adapter_tester
                 mv adapter-amd64.bin adapter.bin
                 chmod +x adapter.bin
-                export ADAPTER_TESTER=1.0
+                export ADAPTER_TESTER=1
                 cat > VERSION << EOF
                 1.0
                 EOF
