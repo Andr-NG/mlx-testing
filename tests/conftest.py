@@ -1,5 +1,6 @@
 # flake8: noqa
 import pytest
+import os
 import logging
 import API
 import utils
@@ -30,18 +31,20 @@ logger.propagate = False
 
 
 @pytest.fixture(scope="session")
-def generate_owner_email() -> Generator[str, Any, None]:
-    name_owner = 'andrey.nguyenmain'
+def generate_email() -> Generator[str, Any, None]:
+    EMAIL_INDEX_FILE = os.getenv("EMAIL_INDEX_FILE", "email_index.txt")
+
+    name_owner = 'launcher_regression'
     domain = '@multilogin.com'
 
-    with open('index.txt', 'r') as f:
+    with open(EMAIL_INDEX_FILE, 'r') as f:
         data = f.read()
 
     ind = int(data) + 1
     email = name_owner + str(ind) + domain
     yield email
 
-    with open('index.txt', 'w') as f:
+    with open(EMAIL_INDEX_FILE, 'w') as f:
         f.write(str(ind))
 
 

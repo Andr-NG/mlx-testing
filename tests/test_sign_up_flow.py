@@ -15,7 +15,7 @@ logger = logging.getLogger("my_logger")
 
 
 @pytest.fixture()
-def sign_up(mlx_api: API.MLX, provide: UserData, generate_owner_email: Generator) -> dict:
+def sign_up(mlx_api: API.MLX, provide: UserData, generate_email: Generator) -> dict:
     """Sign up
 
     Args:
@@ -29,7 +29,7 @@ def sign_up(mlx_api: API.MLX, provide: UserData, generate_owner_email: Generator
     # Step 1: Sign up
     try:
         sign_up_data = mlx_api.sign_up(
-            login=generate_owner_email, user_pass=provide.owner.password
+            login=generate_email, user_pass=provide.owner.password
         )
         return sign_up_data
     except Exception as e:
