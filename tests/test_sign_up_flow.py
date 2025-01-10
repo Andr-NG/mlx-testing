@@ -21,7 +21,7 @@ def sign_up(mlx_api: API.MLX, provide: UserData, generate_email: Generator) -> d
     Args:
         mlx_api (API.MLX): MLX API instance.
         provide (UserData): Fixture to provide data.
-        generate_owner_email (Fixture): Fixture to generate email.
+        generate_email (Fixture): Fixture to generate email.
 
     Returns:
         dict: sign-up response
@@ -38,19 +38,19 @@ def sign_up(mlx_api: API.MLX, provide: UserData, generate_email: Generator) -> d
 
 
 @pytest.fixture()
-def get_email_token(emp_api: API.EMP, generate_owner_email: Generator) -> emp_models.TokenResponse:
+def get_email_token(emp_api: API.EMP, generate_email: Generator) -> emp_models.TokenResponse:
     """Get email token for verification
 
     Args:
         emp_api (API.EMP): EMP API instance.
-        generate_owner_email (Fixture): Fixture to generate email.
+        generate_email (Fixture): Fixture to generate email.
 
     Returns:
         dict: Email verification token.
     """
     # Step 2: Get Email Token
     try:
-        email_token_data = emp_api.get_email_token(email=generate_owner_email)
+        email_token_data = emp_api.get_email_token(email=generate_email)
         response = emp_models.TokenResponse(**email_token_data)
         return response
     except Exception as e:
@@ -60,23 +60,23 @@ def get_email_token(emp_api: API.EMP, generate_owner_email: Generator) -> emp_mo
 
 @pytest.fixture(scope="session")
 def sign_in(
-    mlx_api: API.MLX, provide: UserData, generate_owner_email
+    mlx_api: API.MLX, provide: UserData, generate_email
 ) -> tuple[str, str]:
     """Sign in to get token
 
     Args:
         mlx_api (API.MLX): MLX API instance.
         provide (UserData): Fixture to provide data.
-        generate_owner_email (Fixture): Fixture to generate email.
+        generate_email (Fixture): Fixture to generate email.
 
     Returns:
         tuple[str, str]: tuple with token and refresh token.
     """
     # Step 3: Sign in
     try:
-        logger.info("Signing in with %s", generate_owner_email)
+        logger.info("Signing in with %s", generate_email)
         sign_in_data = mlx_api.sign_in(
-            login=generate_owner_email, password=provide.owner.password
+            login=generate_email, password=provide.owner.password
         )
         sign_in_response = mlx_models.SigninResponse(**sign_in_data)
         token = sign_in_response.data.token
@@ -92,14 +92,14 @@ def sign_in(
 
 @pytest.fixture()
 def sign_in_to_verify(
-    mlx_api: API.MLX, provide: UserData, generate_owner_email: Generator
+    mlx_api: API.MLX, provide: UserData, generate_email: Generator
 ) -> mlx_models.SigninResponse:
     """Sign in to verify only
 
     Args:
         mlx_api (API.MLX): MLX API instance.
         provide (UserData): Fixture to provide data.
-        generate_owner_email (Fixture): Fixture to generate email.
+        generate_email (Fixture): Fixture to generate email.
 
     Returns:
         mlx_models.SigninResponse: mlx_models.SigninResponse
@@ -107,7 +107,7 @@ def sign_in_to_verify(
     # Step 3: Sign in
     try:
         sign_in_data = mlx_api.sign_in(
-            login=generate_owner_email, password=provide.owner.password
+            login=generate_email, password=provide.owner.password
         )
         sign_in_response = mlx_models.SigninResponse(**sign_in_data)
         return sign_in_response
@@ -122,7 +122,7 @@ def sign_in_to_verify(
 @pytest.fixture()
 def verify_email(
     mlx_api: API.MLX,
-    generate_owner_email: Generator,
+    generate_email: Generator,
     get_email_token: emp_models.TokenResponse,
     sign_in_to_verify: mlx_models.SigninResponse,
 ) -> dict:
@@ -130,7 +130,7 @@ def verify_email(
 
     Args:
         mlx_api (API.MLX): MLX API instance.
-        generate_owner_email (Fixture): Fixture to generate email.
+        generate_email (Fixture): Fixture to generate email.
         get_email_token (Fixture): Fixture to get email token.
         sign_in_to_verify (Fixture): Fixture to sign in verify account.
 
@@ -142,7 +142,7 @@ def verify_email(
     email_token = get_email_token.data.token
     try:
         verify_data = mlx_api.verify_email(
-            email=generate_owner_email, email_token=email_token, jwt=token
+            email=generate_email, email_token=email_token, jwt=token
         )
         logger.info(f"Verification response: {verify_data}")
         return verify_data
@@ -272,10 +272,10 @@ def create_profile(
 class TestE2ESignUp:
 
     def test_sign_up(
-            self, sign_up: dict, request: FixtureRequest, generate_owner_email: Generator
+            self, sign_up: dict, request: FixtureRequest, generate_email: Generator
     ) -> None:
         logger.info(f"Executing {request.node.name}")
-        logger.info("Attempting sign-up with %s", generate_owner_email)
+        logger.info("Attempting sign-up with %s", generate_email)
         try:
             data = sign_up
             logger.info(f"Sign up response: {data}")
