@@ -58,5 +58,5 @@ jobs:
         run: |
           index=${{ vars.EMAIL_INDEX }} 
           NEW_INDEX=$((index + 1))
-          echo "Incremented index: $new_index"
-          echo "EMAIL_INDEX=$new_index" >> $GITHUB_ENV
+          echo "Incremented index: $NEW_INDEX"
+          echo "EMAIL_INDEX=$NEW_INDEX" >> $GITHUB_ENV
