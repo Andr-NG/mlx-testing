@@ -31,7 +31,9 @@ jobs:
         continue-on-error: true
 
       - name: Set Default Index if Absent
-        run: echo "0" > ./artifact/email_index.txt || true
+        run: |
+          mkdir -p ./artifact  
+          echo "0" > ./artifact/email_index.txt || true
 
       - name: Set up Adapter
         run: |
