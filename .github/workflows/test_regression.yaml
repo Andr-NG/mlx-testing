@@ -48,15 +48,15 @@ jobs:
           sleep 5 # Allow some time for the launcher to initialize
 
       - name: Run Tests
-        env: 
+        env:
           EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
         run: |
-          echo "Current email: ${{ vars.EMAIL }}+$EMAIL_INDEX"
+          echo "Current email index is $EMAIL_INDEX"
           pytest tests/test_sign_up_flow.py
       
       - name: Update Index
         run: |
-          index=$EMAIL_INDEX 
+          index=${{ vars.EMAIL_INDEX }} 
           NEW_INDEX=$((index + 1))
           echo "Incremented index: $NEW_INDEX"
           echo "EMAIL_INDEX=$NEW_INDEX" >> $GITHUB_ENV
