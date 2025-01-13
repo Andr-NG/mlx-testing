@@ -9,7 +9,6 @@ jobs:
     environment: DEVELOP
     env:
       DEV: ${{ secrets.DEV }}
-      EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -49,13 +48,15 @@ jobs:
           sleep 5 # Allow some time for the launcher to initialize
 
       - name: Run Tests
+        env: 
+          EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
         run: |
-          echo "Current email is $EMAIL with index of $EMAIL_INDEX"
+          echo "Current email: ${{ vars.EMAIL }}+$EMAIL_INDEX"
           pytest tests/test_sign_up_flow.py
       
       - name: Update Index
         run: |
-          index=${{ vars.EMAIL_INDEX }} 
+          index=$EMAIL_INDEX 
           NEW_INDEX=$((index + 1))
           echo "Incremented index: $NEW_INDEX"
           echo "EMAIL_INDEX=$NEW_INDEX" >> $GITHUB_ENV
