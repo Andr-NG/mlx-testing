@@ -49,8 +49,9 @@ jobs:
       - name: Run Tests
         env:
           EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
+          EMAIL: ${{ vars.EMAIL}}
         run: |
-          echo "Current email: $CURRENT_EMAIL"
+          echo "Current email: $EMAIL"
           echo "Current email index: $EMAIL_INDEX"
           pytest tests/test_sign_up_flow.py
       
@@ -60,3 +61,9 @@ jobs:
           NEW_INDEX=$((index + 1))
           echo "Incremented index: $NEW_INDEX"
           echo "EMAIL_INDEX=$NEW_INDEX" >> $GITHUB_ENV
+          echo "Updating EMAIL_INDEX"
+          curl -X PUT \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/environments/DEVELOP/variables/EMAIL_INDEX \
+            -d "{\"name\":\"EMAIL_INDEX\",\"value\":\"$NEW_INDEX\"}"

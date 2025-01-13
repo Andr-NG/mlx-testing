@@ -37,7 +37,6 @@ def generate_email() -> Generator[str, Any, None]:
     domain = 'multilogin.com'
 
     email = f"{EMAIL}+{IND}@{domain}"
-    os.environ['CURRENT_EMAIL'] = email
     return email
 
 
