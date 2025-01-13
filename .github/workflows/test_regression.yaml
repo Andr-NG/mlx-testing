@@ -65,5 +65,5 @@ jobs:
           curl -X PUT \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos//Andr-NG/mlx-testing/environments/DEVELOP/variables/EMAIL_INDEX \
+            https://api.github.com/repos/Andr-NG/mlx-testing/environments/DEVELOP/variables/EMAIL_INDEX \
             -d "{\"name\":\"EMAIL_INDEX\",\"value\":\"$NEW_INDEX\"}"
