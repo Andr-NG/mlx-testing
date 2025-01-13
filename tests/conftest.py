@@ -29,13 +29,11 @@ logger.addHandler(handler)
 # Avoid duplicating logs
 logger.propagate = False
 
-
 @pytest.fixture(scope="session")
 def generate_email() -> Generator[str, Any, None]:
     IND = os.getenv('EMAIL_INDEX', 0)
     EMAIL = os.getenv('EMAIL', f'launcher_regression')
     domain = 'multilogin.com'
-
     email = f"{EMAIL}+{IND}@{domain}"
     return email
 
