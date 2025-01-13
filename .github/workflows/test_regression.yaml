@@ -61,6 +61,7 @@ jobs:
           echo "Incremented index: $NEW_INDEX"
           echo "EMAIL_INDEX=$NEW_INDEX" >> $GITHUB_ENV
           echo "Updating EMAIL_INDEX"
+          
           curl -X PATCH \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
