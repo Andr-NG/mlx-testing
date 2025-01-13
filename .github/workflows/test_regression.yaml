@@ -60,9 +60,8 @@ jobs:
           index=${{ vars.EMAIL_INDEX }} 
           NEW_INDEX=$((index + 1))
           echo "Incremented index: $NEW_INDEX"
-          echo "EMAIL_INDEX=$NEW_INDEX" >> $GITHUB_ENV
           echo "Updating EMAIL_INDEX"
-          curl -X PUT \
+          curl -X PATCH \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/Andr-NG/mlx-testing/environments/DEVELOP/variables/EMAIL_INDEX \
