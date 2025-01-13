@@ -50,7 +50,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          echo "Current email index is $EMAIL_INDEX"
+          echo "Current email is $EMAIL+$EMAIL_INDEX"
           pytest tests/test_sign_up_flow.py
       
       - name: Update Index
