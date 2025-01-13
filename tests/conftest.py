@@ -32,12 +32,12 @@ logger.propagate = False
 
 @pytest.fixture(scope="session")
 def generate_email() -> Generator[str, Any, None]:
-    IND = os.getenv("EMAIL_INDEX", 0)
+    IND = os.getenv('EMAIL_INDEX', 0)
+    ENV = os.getenv('ENVIRON', 'dev')
+    EMAIL = os.getenv('EMAIL', f'launcher_regression_{ENV}')
+    domain = 'multilogin.com'
 
-    name_owner = 'launcher_regression'
-    domain = '@multilogin.com'
-
-    email = name_owner + str(IND) + domain
+    email = f"{EMAIL}_{ENV}+{IND}@{domain}"
     return email
 
 
