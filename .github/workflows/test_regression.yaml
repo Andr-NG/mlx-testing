@@ -55,7 +55,7 @@ jobs:
           echo "Current email index: $EMAIL_INDEX"
           pytest tests/test_sign_up_flow.py
       
-      - name: Update Index
+      - name: Update Email Index
         run: |
           index=${{ vars.EMAIL_INDEX }} 
           NEW_INDEX=$((index + 1))
