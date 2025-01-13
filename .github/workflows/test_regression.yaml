@@ -7,7 +7,9 @@ jobs:
   run-profile-tests:
     runs-on: ubuntu-latest
     environment: DEVELOP
-    permissions: write-all
+    permissions:
+      variables: write
+      environments: write
     env:
       DEV: ${{ secrets.DEV }}
       EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
