@@ -7,6 +7,7 @@ jobs:
   run-profile-tests:
     runs-on: ubuntu-latest
     environment: DEVELOP
+    permissions: write-all
     env:
       DEV: ${{ secrets.DEV }}
       EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
@@ -61,7 +62,7 @@ jobs:
           echo "Incremented index: $NEW_INDEX"
           echo "EMAIL_INDEX=$NEW_INDEX" >> $GITHUB_ENV
           echo "Updating EMAIL_INDEX"
-          
+
           curl -X PATCH \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github+json" \
