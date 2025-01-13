@@ -42,7 +42,6 @@ jobs:
 
       - name: Start Launcher
         run: |
-          set -e
           export ADAPTER_TESTER=1
           /home/runner/mlx/deps/launcher/launcher.bin -gw-env=dev &
           sleep 5 # Allow some time for the launcher to initialize
@@ -51,7 +50,8 @@ jobs:
         env:
           EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
         run: |
-          echo "Current email index is $EMAIL_INDEX"
+          echo "Current email: $CURRENT_EMAIL"
+          echo "Current email index: $EMAIL_INDEX"
           pytest tests/test_sign_up_flow.py
       
       - name: Update Index
