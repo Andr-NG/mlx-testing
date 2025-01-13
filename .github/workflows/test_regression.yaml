@@ -9,7 +9,7 @@ jobs:
     environment: DEVELOP
     permissions:
       actions: write
-      contents: read
+      contents: write
       repository-projects: write
     env:
       DEV: ${{ secrets.DEV }}
