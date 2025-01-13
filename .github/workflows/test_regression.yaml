@@ -7,8 +7,14 @@ jobs:
   run-profile-tests:
     runs-on: ubuntu-latest
     environment: DEVELOP
+    permissions:
+      actions: write
+      contents: read
+      repository-projects: write
     env:
       DEV: ${{ secrets.DEV }}
+      EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
+      EMAIL: ${{ vars.EMAIL}}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -47,9 +53,6 @@ jobs:
           sleep 5 # Allow some time for the launcher to initialize
 
       - name: Run Tests
-        env:
-          EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
-          EMAIL: ${{ vars.EMAIL}}
         run: |
           echo "Current email: $EMAIL"
           echo "Current email index: $EMAIL_INDEX"
