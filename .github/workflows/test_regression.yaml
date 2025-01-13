@@ -9,6 +9,7 @@ jobs:
     environment: DEVELOP
     env:
       DEV: ${{ secrets.DEV }}
+      EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -48,8 +49,6 @@ jobs:
           sleep 5 # Allow some time for the launcher to initialize
 
       - name: Run Tests
-        env:
-          EMAIL_INDEX: ${{ vars.EMAIL_INDEX }}
         run: |
           echo "Current email index is $EMAIL_INDEX"
           pytest tests/test_sign_up_flow.py
